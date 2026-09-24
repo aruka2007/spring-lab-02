@@ -1,6 +1,6 @@
-package org.example.springlab01.config;
+package org.example.springlab02.config;
 
-import org.example.springlab01.notify.Notifier;
+import org.example.springlab02.notify.Notifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

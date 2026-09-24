@@ -1,4 +1,4 @@
-package org.example.springlab01.web;
+package org.example.springlab02.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class HelloController {
     public Map<String, Object> hello() {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("message", "Hello, World!");
-        response.put("owner", "Mautkan Nurbolat, IS-2405");
+        response.put("owner", "Erkin Aruzhan, IS-2405");
         response.put("timestamp", LocalDateTime.now().toString());
         return response;
     }

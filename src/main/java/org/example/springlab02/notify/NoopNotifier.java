@@ -1,4 +1,4 @@
-package org.example.springlab01.notify;
+package org.example.springlab02.notify;
 
 import org.springframework.context.annotation.Fallback;
 import org.springframework.core.annotation.Order;

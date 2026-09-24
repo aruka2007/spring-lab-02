@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>spring-lab-01</artifactId>
+    <artifactId>spring-lab-02</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-lab-01</name>
-    <description>spring-lab-01</description>
+    <name>spring-lab-02</name>
+    <description>spring-lab-02</description>
     <url/>
     <licenses>
         <license/>

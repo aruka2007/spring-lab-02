@@ -1,4 +1,4 @@
-package org.example.springlab01.scope;
+package org.example.springlab02.scope;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;

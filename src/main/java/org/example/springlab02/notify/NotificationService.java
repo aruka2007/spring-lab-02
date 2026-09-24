@@ -1,4 +1,4 @@
-package org.example.springlab01.notify;
+package org.example.springlab02.notify;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

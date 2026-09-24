@@ -1,8 +1,8 @@
-package org.example.springlab01.web;
+package org.example.springlab02.web;
 
-import org.example.springlab01.lifecycle.LifecycleDemo;
-import org.example.springlab01.notify.NotificationService;
-import org.example.springlab01.scope.TicketOffice;
+import org.example.springlab02.lifecycle.LifecycleDemo;
+import org.example.springlab02.notify.NotificationService;
+import org.example.springlab02.scope.TicketOffice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,9 +51,9 @@ public class Lab2Controller {
     @GetMapping("/custom")
     public Map<String, Object> custom(@RequestParam(defaultValue = "Hello") String text) {
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("channel", "reversed");
+        result.put("channel", "counting");
         result.put("input", text);
-        result.put("output", notifications.viaName("reversed", text));
+        result.put("output", notifications.viaName("counting", text));
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package org.example.springlab01.config;
+package org.example.springlab02.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
