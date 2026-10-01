@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+app:
+  mail:
+    enabled: true
+    retry-count: 5
+  notification:
+    channels:
+      telegram: "@prod_alerts_bot"
+      slack: "#prod-incidents"
+      email: "ops@iitu.kz"
+    quiet-hours: "00:00-06:00"
+
+logging:
+  level:
+    org.example: WARN

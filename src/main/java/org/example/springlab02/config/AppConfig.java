@@ -11,7 +11,7 @@ import java.util.Locale;
 public class AppConfig {
 
     @Bean
-    public DateTimeFormatter dateTimeFormatter(@Value("${app.date-pattern}") String pattern) {
+    public DateTimeFormatter dateTimeFormatter(@Value("${app.date-pattern:yyyy-MM-dd HH:mm:ss}") String pattern) {
         return DateTimeFormatter.ofPattern(pattern, Locale.ROOT);
     }
 }
