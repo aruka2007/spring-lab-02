@@ -20,14 +20,14 @@ public class BookRestController {
 
     // 1. List books with optional filter and limit
     @GetMapping
-    public List<Book> list(@RequestParam(required = false) String author,
-                           @RequestParam(defaultValue = "10") int limit) {
+    public List<Book> list(@RequestParam(name = "author", required = false) String author,
+                           @RequestParam(name = "limit", defaultValue = "10") int limit) {
         return service.findAll(author).stream().limit(limit).toList();
     }
 
     // 2. Read single book by id
     @GetMapping("/{id}")
-    public ResponseEntity<Book> find(@PathVariable long id) {
+    public ResponseEntity<Book> find(@PathVariable("id") long id) {
         return service.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -44,7 +44,7 @@ public class BookRestController {
 
     // 4. Replace / update book (TODO 2.2)
     @PutMapping("/{id}")
-    public ResponseEntity<Book> replace(@PathVariable long id, @RequestBody Book book) {
+    public ResponseEntity<Book> replace(@PathVariable("id") long id, @RequestBody Book book) {
         return service.update(id, book)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -52,7 +52,7 @@ public class BookRestController {
 
     // 5. Delete book (TODO 2.3)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
         if (service.delete(id)) {
             return ResponseEntity.noContent().build();
         }
