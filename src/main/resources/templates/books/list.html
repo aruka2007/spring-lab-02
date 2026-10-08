@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Catalogue</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 th:text="${title}">Catalogue</h1>
+            <p class="subtitle">Spring MVC Laboratory Work 5 &bull; Student: Erkin Aruzhan (2405-IS)</p>
+        </header>
+
+        <!-- Flash message after POST / PRG -->
+        <p th:if="${message}" class="flash" th:text="${message}"></p>
+
+        <!-- Filter form -->
+        <div class="filter-box">
+            <form th:action="@{/books}" method="get">
+                <label for="authorInput">Filter by author:</label>
+                <input id="authorInput" type="text" name="author" th:value="${author}" placeholder="e.g. Bloch">
+                <button type="submit" class="btn btn-secondary">Filter</button>
+                <a th:href="@{/books}" class="btn btn-outline" th:if="${author != null and !author.isEmpty()}">Reset</a>
+            </form>
+        </div>
+
+        <!-- Books Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}">1</td>
+                    <td>
+                        <!-- Clickable title linking to Variant 10 page -->
+                        <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}" class="book-link">Title</a>
+                    </td>
+                    <td th:text="${book.author}">Author</td>
+                    <td th:text="${book.year}">2020</td>
+                    <td>
+                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn-link">View Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Add book form (PRG demonstration) -->
+        <div class="card form-card">
+            <h3>Add a New Book (Post/Redirect/Get)</h3>
+            <form th:action="@{/books}" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" name="title" required placeholder="Book title">
+                    </div>
+                    <div class="form-group">
+                        <label>Author:</label>
+                        <input type="text" name="author" required placeholder="Author name">
+                    </div>
+                    <div class="form-group">
+                        <label>Year:</label>
+                        <input type="number" name="year" required placeholder="e.g. 2024" value="2024">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </form>
+        </div>
+
+        <nav class="footer-nav">
+            <a th:href="@{/}" class="back-link">&larr; Back to Home</a>
+        </nav>
+    </div>
+</body>
+</html>

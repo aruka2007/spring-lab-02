@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring MVC Library Application</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <style>
+        .hero {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .hero h1 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        .hero p.tagline {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .link-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            border-color: #2563eb;
+        }
+        .link-card h3 {
+            color: #2563eb;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .link-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Spring MVC Library App</h1>
+            <p class="tagline">Laboratory Work No. 5 &bull; Student: Erkin Aruzhan (2405-IS, Variant 10)</p>
+            
+            <div class="links-grid">
+                <a href="/books" class="link-card">
+                    <h3>&rarr; Web Catalogue (/books)</h3>
+                    <p>Open Thymeleaf HTML page with book list, author filtering, and Post/Redirect/Get creation form.</p>
+                </a>
+                <a href="/api/books" class="link-card">
+                    <h3>&rarr; REST API (/api/books)</h3>
+                    <p>Access full JSON catalogue directly via Spring Web @RestController endpoint.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
