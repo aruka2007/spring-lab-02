@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Not Found</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <header class="header">
+        <h1>404 - Resource Not Found</h1>
+        <p>Handled centrally by <code>PageExceptionHandler</code></p>
+    </header>
+
+    <main class="container">
+        <div class="alert alert-error">
+            <h2 style="margin-top: 0;">Error Details</h2>
+            <p th:text="${message}">The requested resource could not be found.</p>
+        </div>
+
+        <p><a th:href="@{/books}" class="btn">← Back to Catalogue</a></p>
+    </main>
+</body>
+</html>

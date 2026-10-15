@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Book Details</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Details</h1>
+            <p class="subtitle">Variant 10: Single Book View &bull; Student: Erkin Aruzhan (2405-IS)</p>
+        </header>
+
+        <div class="card detail-card">
+            <div class="badge">Book #<span th:text="${book.id}">1</span></div>
+            <h2 th:text="${book.title}" class="detail-title">Title</h2>
+            
+            <div class="detail-item">
+                <span class="detail-label">Author:</span>
+                <span class="detail-value" th:text="${book.author}">Author</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Publication Year:</span>
+                <span class="detail-value" th:text="${book.year}">2020</span>
+            </div>
+            
+            <div class="detail-actions" style="display: flex; gap: 0.75rem;">
+                <a th:href="@{/books}" class="btn btn-outline">&larr; Back to Catalogue</a>
+                <a th:href="@{/books/{id}/edit(id=${book.id})}" class="btn btn-primary">Edit Book (Variant 10)</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? #{book.edit} : #{book.new}">New book</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="lang-switch">
+                <span>Language / Язык:</span>
+                <a th:href="@{''(lang='en')}">English</a> |
+                <a th:href="@{''(lang='ru')}">Русский</a>
+            </div>
+            <h1 th:text="${isEdit} ? #{book.edit} : #{book.new}">New book</h1>
+            <p class="subtitle" th:text="${isEdit} ? 'Variant 10: Updating existing record' : 'Task 2: Form binding and declarative validation'">Form details</p>
+        </header>
+
+        <div class="card form-card">
+            <form th:action="${isEdit} ? @{/books/{id}/edit(id=${bookId})} : @{/books}" th:object="${form}" method="post">
+                
+                <!-- Error Summary (Task 2.1) inside th:object context -->
+                <div class="alert" th:if="${#fields.hasAnyErrors()}">
+                    <strong>Validation Errors:</strong>
+                    <ul>
+                        <li th:each="e : ${#fields.allErrors()}" th:text="${e}"></li>
+                    </ul>
+                </div>
+
+                <!-- Title Field -->
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label th:text="#{book.title}">Title</label>
+                    <input type="text" th:field="*{title}" th:errorclass="is-invalid" placeholder="e.g. Effective Java">
+                    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                </div>
+
+                <!-- Author Field (with @NoDigits custom constraint) -->
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label th:text="#{book.author}">Author</label>
+                    <input type="text" th:field="*{author}" th:errorclass="is-invalid" placeholder="e.g. Joshua Bloch">
+                    <span class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+                </div>
+
+                <!-- Year Field -->
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label th:text="#{book.year}">Year</label>
+                    <input type="number" th:field="*{year}" th:errorclass="is-invalid" placeholder="e.g. 2018">
+                    <span class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+                </div>
+
+                <!-- Genre Field -->
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label th:text="#{book.genre}">Genre</label>
+                    <select th:field="*{genre}" th:errorclass="is-invalid">
+                        <option value="">—</option>
+                        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></span>
+                </div>
+
+                <!-- Available Checkbox -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" th:field="*{available}">
+                        <span th:text="#{book.available}">Available</span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button type="submit" class="btn btn-primary" th:text="#{form.submit}">Save</button>
+                    <a th:href="@{/books}" class="back-link">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer-nav">
+            <a th:href="@{/books}" class="back-link">← Back to Catalogue</a>
+        </div>
+    </div>
+</body>
+</html>

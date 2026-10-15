@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Book Not Found</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="card error-card">
+            <div class="error-badge">404 NOT FOUND</div>
+            <h2>Book Not Found</h2>
+            <p class="error-text">
+                The requested book with ID <strong th:text="${missingId}">999</strong> does not exist in the catalogue.
+            </p>
+            <div class="detail-actions">
+                <a th:href="@{/books}" class="btn btn-primary">&larr; Return to Catalogue</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
