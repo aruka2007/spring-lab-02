@@ -304,3 +304,82 @@ tr:hover td {
     color: #0f172a;
     text-decoration: underline;
 }
+
+/* Lab 06: Validation and Form controls */
+.is-invalid {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+}
+
+.is-invalid:focus {
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+    font-weight: 500;
+}
+
+.alert {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+    padding: 0.85rem 1.25rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.alert ul {
+    margin-left: 1.25rem;
+}
+
+.alert li {
+    margin-bottom: 0.25rem;
+}
+
+select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #1e293b;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+}
+
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+.lang-switch {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.lang-switch a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 0.25rem;
+}
+
+.lang-switch a:hover {
+    text-decoration: underline;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #334155;
+    margin-top: 0.5rem;
+}
+

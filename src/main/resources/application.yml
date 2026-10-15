@@ -1,6 +1,12 @@
 spring:
   application:
     name: spring-lab-02
+  thymeleaf:
+    cache: false
+  messages:
+    fallback-to-system-locale: false
+
+
 
 server:
   port: 8080

@@ -25,8 +25,9 @@
                 <span class="detail-value" th:text="${book.year}">2020</span>
             </div>
             
-            <div class="detail-actions">
-                <a th:href="@{/books}" class="btn btn-primary">&larr; Back to Catalogue</a>
+            <div class="detail-actions" style="display: flex; gap: 0.75rem;">
+                <a th:href="@{/books}" class="btn btn-outline">&larr; Back to Catalogue</a>
+                <a th:href="@{/books/{id}/edit(id=${book.id})}" class="btn btn-primary">Edit Book (Variant 10)</a>
             </div>
         </div>
     </div>

@@ -25,12 +25,10 @@ public class BookRestController {
         return service.findAll(author).stream().limit(limit).toList();
     }
 
-    // 2. Read single book by id
+    // 2. Read single book by id (throws BookNotFoundException -> ApiExceptionHandler)
     @GetMapping("/{id}")
-    public ResponseEntity<Book> find(@PathVariable("id") long id) {
-        return service.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Book find(@PathVariable("id") long id) {
+        return service.getById(id);
     }
 
     // 3. Create book
