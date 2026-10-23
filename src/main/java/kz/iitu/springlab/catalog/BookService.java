@@ -2,6 +2,7 @@ package kz.iitu.springlab.catalog;
 
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,15 +34,24 @@ public class BookService {
     }
 
     public Book create(Book book) {
-        return repository.save(new Book(null, book.title(), book.author(), book.year()));
+        boolean duplicate = repository.findAll().stream()
+                .anyMatch(b -> b.title().equalsIgnoreCase(book.title()) && b.author().equalsIgnoreCase(book.author()));
+        if (duplicate) {
+            throw new DuplicateTitleException(book.title());
+        }
+        return repository.save(new Book(null, book.title(), book.author(), book.year(),
+                book.genre() != null ? book.genre() : Genre.FICTION,
+                book.createdAt() != null ? book.createdAt() : Instant.now()));
     }
 
-    public Optional<Book> update(long id, Book book) {
+    public Book update(long id, Book book) {
         if (repository.findById(id).isEmpty()) {
-            return Optional.empty();
+            throw new BookNotFoundException(id);
         }
-        Book updated = new Book(id, book.title(), book.author(), book.year());
-        return Optional.of(repository.save(updated));
+        Book updated = new Book(id, book.title(), book.author(), book.year(),
+                book.genre() != null ? book.genre() : Genre.FICTION,
+                book.createdAt() != null ? book.createdAt() : Instant.now());
+        return repository.save(updated);
     }
 
     public boolean delete(long id) {
