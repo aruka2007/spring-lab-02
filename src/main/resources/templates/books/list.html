@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">Catalogue</title>
@@ -8,13 +9,25 @@
 <body>
     <div class="container">
         <header>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                <div>
+                    User: <strong sec:authentication="name">anonymous</strong>
+                    &bull; Roles: <span sec:authentication="principal.authorities">[ROLE_USER]</span>
+                </div>
+                <div style="display: flex; gap: 0.75rem; align-items: center;">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="btn btn-secondary">Administration</a>
+                    <form th:action="@{/logout}" method="post" style="display: inline; margin: 0;">
+                        <button type="submit" class="btn btn-outline">Log out</button>
+                    </form>
+                </div>
+            </div>
             <div class="lang-switch">
                 <span>Language / Язык:</span>
                 <a th:href="@{''(lang='en')}">English</a> |
                 <a th:href="@{''(lang='ru')}">Русский</a>
             </div>
             <h1 th:text="${title}">Catalogue</h1>
-            <p class="subtitle">Spring MVC Laboratory Work 6 &bull; Student: Erkin Aruzhan (2405-IS, Variant 10)</p>
+            <p class="subtitle">Spring Security Laboratory Work 10 &bull; Student: Erkin Aruzhan (2405-IS, Variant 10)</p>
         </header>
 
         <!-- Flash message after POST / PRG -->
@@ -30,7 +43,7 @@
                     <a th:href="@{/books}" class="btn btn-outline" th:if="${author != null and !author.isEmpty()}">Reset</a>
                 </form>
             </div>
-            <a th:href="@{/books/new}" class="btn btn-primary" style="white-space: nowrap;">+ New Book (Form)</a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/books/new}" class="btn btn-primary" style="white-space: nowrap;">+ New Book (Form)</a>
         </div>
 
         <!-- Books Table -->
@@ -53,8 +66,10 @@
                     <td th:text="${book.author}">Author</td>
                     <td th:text="${book.year}">2020</td>
                     <td>
-                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn-link">View</a> &bull;
-                        <a th:href="@{/books/{id}/edit(id=${book.id})}" class="btn-link">Edit</a>
+                        <a th:href="@{/books/{id}(id=${book.id})}" class="btn-link">View</a>
+                        <span sec:authorize="hasRole('ADMIN')">
+                            &bull; <a th:href="@{/books/{id}/edit(id=${book.id})}" class="btn-link">Edit</a>
+                        </span>
                     </td>
                 </tr>
             </tbody>

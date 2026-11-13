@@ -1,5 +1,6 @@
 package kz.iitu.springlab.catalog;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -54,6 +55,7 @@ public class BookService {
         return repository.save(updated);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean delete(long id) {
         return repository.deleteById(id);
     }

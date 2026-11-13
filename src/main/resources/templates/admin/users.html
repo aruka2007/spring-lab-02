@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <div>
+                    Logged in as: <strong sec:authentication="name">admin</strong>
+                    (<span sec:authentication="principal.authorities">[ROLE_ADMIN]</span>)
+                </div>
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-outline">Log out</button>
+                </form>
+            </div>
+            <h1>Administration</h1>
+            <p class="subtitle">Laboratory Work 10 &bull; Users (app_user) &amp; Authentication Audit Events (Variant 10)</p>
+        </header>
+
+        <h2>Registered Users (app_user)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Roles</th>
+                    <th>Enabled</th>
+                    <th>BCrypt Password Hash</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${users}">
+                    <td th:text="${u.id}">1</td>
+                    <td th:text="${u.username}">user</td>
+                    <td th:text="${u.roles}">[USER]</td>
+                    <td th:text="${u.enabled}">true</td>
+                    <td style="font-family: monospace; font-size: 0.85rem;" th:text="${u.passwordHash}">$2a$10$...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="margin-top: 2rem;">Authentication Events Audit Log (Variant 10)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Event Type</th>
+                    <th>Details</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="log : ${authLogs}">
+                    <td th:text="${log.id}">1</td>
+                    <td th:text="${log.username}">admin</td>
+                    <td th:text="${log.eventType}">LOGIN_SUCCESS</td>
+                    <td th:text="${log.details}">Authenticated</td>
+                    <td th:text="${log.createdAt}">2026-11-13</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav class="footer-nav" style="margin-top: 1.5rem;">
+            <a th:href="@{/books}" class="back-link">&larr; Back to Catalogue</a>
+        </nav>
+    </div>
+</body>
+</html>
